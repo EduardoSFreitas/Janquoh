@@ -22,6 +22,7 @@ class Player(pygame.sprite.Sprite):
         self.EProgress=(self.EDuration*1)/60
         self.QDuration = 60
         self.QCoolDown = 60
+        self.shotSquat = 20
         self.QProgress=(self.QDuration*1)/60
         self.cooldown = 0
         self.hitBox = pygame.Rect(self.rect.x, self.rect.y, 25, 25)
@@ -48,7 +49,7 @@ class Player(pygame.sprite.Sprite):
                         self.velocityY = 0
 
         if pygame.mouse.get_pressed()[0] and self.cooldown == 0:
-            self.cooldown = 20
+            self.cooldown = self.shotSquat
             shell = Shell(self.rect)
             shell.x = self.rect.centerx
             shell.y = self.rect.centery
@@ -87,7 +88,6 @@ class Player(pygame.sprite.Sprite):
         if key[pygame.K_e] and self.ECoolDown==60 and self.QDuration==60:
             self.velocityMax=2
             self.shotSquat=60
-            self.demage=4
             self.ECoolDown = 540
             self.EDuration = 360
             self.QDuration = 300
